@@ -44,19 +44,8 @@ messageForm.addEventListener('submit', e => {
   live_message = ''
 })
 
-messageInput.addEventListener('keypress', (e) => {
-  live_message += e.key
-  socket.emit('typing', live_message)
-  //const parent = document.querySelector('#message-input');
-  //const children = parent.querySelectorAll(':scope > div');
-  //socket.emit('typing', Object.values(children))
-})
-
 messageInput.addEventListener('keydown', (e) => {
-  if (e.key == 'Backspace'){
-    live_message = live_message.slice(0, - 1)
-  }
-  socket.emit('back_space', live_message)
+  socket.emit('typing', messageInput.value)
 })
 
 function appendMessage(message) {
