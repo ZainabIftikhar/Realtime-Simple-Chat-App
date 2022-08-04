@@ -14,7 +14,7 @@ appendMessage('You joined')
 socket.emit('new-user', name)
 
 socket.on('chat-message', data => {
-  typing.innerHTML = ""
+  typing.innerHTML = ''
   appendMessage(`${data.name}: ${data.message}`)
 })
 
@@ -27,21 +27,36 @@ socket.on('user-disconnected', name => {
 })
 
 socket.on('typing', data => {
-  typing.innerHTML = '<p>' + data.name + ' is typing...</p>'
+  typing.innerHTML = `<p>${data.name}: ${data.message}...</p>`
+})
+
+socket.on('back_space', data => {
+  typing.innerHTML = ''
+  typing.innerHTML = `<p>${data.name}: ${data.message}...</p>`
 })
 
 messageForm.addEventListener('submit', e => {
   e.preventDefault()
   const message = messageInput.value
-  appendMessage(`You: ${message}`)
+  appendMessage(`${name}: ${message}`)
   socket.emit('send-chat-message', message)
   messageInput.value = ''
+  live_message = ''
 })
 
-messageInput.addEventListener('keypress', function(){
-  live_message += messageInput.innerHTML
-  console.log(live_message)
+messageInput.addEventListener('keypress', (e) => {
+  live_message += e.key
   socket.emit('typing', live_message)
+  //const parent = document.querySelector('#message-input');
+  //const children = parent.querySelectorAll(':scope > div');
+  //socket.emit('typing', Object.values(children))
+})
+
+messageInput.addEventListener('keydown', (e) => {
+  if (e.key == 'Backspace'){
+    live_message = live_message.slice(0, - 1)
+  }
+  socket.emit('back_space', live_message)
 })
 
 function appendMessage(message) {

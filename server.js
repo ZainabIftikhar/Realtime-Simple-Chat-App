@@ -37,4 +37,8 @@ io.on('connection', socket => {
   socket.on('typing', message => {
     socket.broadcast.emit('typing', { message: message, name: users[socket.id] });
   })
+  
+  socket.on('back_space', message => {
+    socket.broadcast.emit('back_space', { message: message, name: users[socket.id] });
+  })
 })
