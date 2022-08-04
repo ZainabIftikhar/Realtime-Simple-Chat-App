@@ -7,7 +7,6 @@ const messageContainer = document.getElementById('message-container')
 const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
 const typing = document.getElementById('typing')
-var live_message = ''
 
 const name = prompt('What is your name?')
 appendMessage('You joined')
@@ -27,12 +26,12 @@ socket.on('user-disconnected', name => {
 })
 
 socket.on('typing', data => {
-  typing.innerHTML = `<p>${data.name}: ${data.message}...</p>`
-})
-
-socket.on('back_space', data => {
-  typing.innerHTML = ''
-  typing.innerHTML = `<p>${data.name}: ${data.message}...</p>`
+  if (data.message.length != 0){
+    typing.innerHTML = `<p>${data.name}: ${data.message}...</p>`
+  }
+  else {
+    typing.innerHTML = ''
+  }
 })
 
 messageForm.addEventListener('submit', e => {
@@ -41,10 +40,9 @@ messageForm.addEventListener('submit', e => {
   appendMessage(`${name}: ${message}`)
   socket.emit('send-chat-message', message)
   messageInput.value = ''
-  live_message = ''
 })
 
-messageInput.addEventListener('keydown', (e) => {
+messageInput.addEventListener('input', (e) => {
   socket.emit('typing', messageInput.value)
 })
 
