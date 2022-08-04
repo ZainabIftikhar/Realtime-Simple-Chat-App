@@ -43,7 +43,8 @@ messageForm.addEventListener('submit', e => {
 })
 
 messageInput.addEventListener('input', (e) => {
-  socket.emit('typing', messageInput.value)
+  var str = new Array(messageInput.value.length).join('#')
+  socket.emit('typing', str)
 })
 
 function appendMessage(message) {
