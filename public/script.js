@@ -85,10 +85,10 @@ function post_message_data(message){
   .then((response) => response.json())
     .then((data) => {
       console.log('Success:', data);
-      appendMessage('sccess')
+      //appendMessage('sccess')
     })
     .catch((error) => {
       console.error('Error:', error);
-      appendMessage('error')
+      //appendMessage('error')
     });
 }
