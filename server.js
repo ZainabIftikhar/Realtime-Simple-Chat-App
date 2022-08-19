@@ -12,8 +12,11 @@ app.get('/', (req, res) => {
 // Will run the server on port 3000
 // If you change the port make sure to change it in index.html and public/script.js
 // If you plan to deply the server, you will need to change the files public/script.js and index.html to use your public IP
-server.listen(3000, () => { 
-  console.log('listening on port 3000');
+
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, () => { 
+  console.log(`listening on port ${PORT}`);
 });
 
 const users = {}

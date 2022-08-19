@@ -1,5 +1,5 @@
 //import {post_message_data} from "./post_data.js";
-const socket = io('https://chatatbrownhci.herokuapp.com:3000')
+const socket = io('http://localhost:3000')
 
 const messageContainer = document.getElementById('message-container')
 const messageForm = document.getElementById('send-container')
