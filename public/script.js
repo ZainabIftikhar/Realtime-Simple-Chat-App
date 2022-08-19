@@ -1,5 +1,4 @@
-//import {post_message_data} from "./post_data.js";
-const socket = io('http://localhost:3000')
+const socket = io()
 
 const messageContainer = document.getElementById('message-container')
 const messageForm = document.getElementById('send-container')
