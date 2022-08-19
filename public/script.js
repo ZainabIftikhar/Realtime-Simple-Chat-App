@@ -4,24 +4,31 @@ const messageContainer = document.getElementById('message-container')
 const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
 const typing = document.getElementById('typing')
+
+var keypressed_timestamped = ''
 var indicator_case = 3
 
 
 const name = prompt('What is your name?')
-appendMessage('You joined')
+appendMessage(`${name} joined`)
+//post_message_data(`(${name} connected, ${Math.floor(new Date().getTime() / 1000)})`)
 socket.emit('new-user', name)
 
+
+//Message received with recipient name
 socket.on('chat-message', data => {
   typing.innerHTML = ''
-  //This name is the sender name; you are recipient here
   appendMessage(`${data.name}: ${data.message}`)
 })
 
+//Shows when other people connect
 socket.on('user-connected', name => {
   appendMessage(`${name} connected`)
 })
 
+//Shows when other people disconnect
 socket.on('user-disconnected', name => {
+  //post_message_data(`(${name} disconnected, ${Math.floor(new Date().getTime() / 1000)})`)
   appendMessage(`${name} disconnected`)
 })
 
@@ -42,18 +49,27 @@ socket.on('typing', data => {
   }
 })
 
+//Message sent by sender - call API 
 messageForm.addEventListener('submit', e => {
   e.preventDefault()
+  
+  post_message_data(keypressed_timestamped)
+  keypressed_timestamped = ''
+  
   const message = messageInput.value
-  //This name here is the sender name - so as soon as he hits the send, you send the message to the db
-  post_message_data(message)
   appendMessage(`${name}: ${message}`)
   socket.emit('send-chat-message', message)
   messageInput.value = ''
 })
 
-messageInput.addEventListener('input', function(){
+messageInput.addEventListener('input', function(e){
   socket.emit('typing', messageInput.value)
+})
+
+//Keys pressed by the sender - concatenate keys/events 
+messageInput.addEventListener('keyup', function(e){
+  keypressed_timestamped += `(${e.key}, ${Math.floor(new Date().getTime() / 1000)})`
+  appendMessage(keypressed_timestamped)
 })
 
 function appendMessage(message) {
@@ -62,7 +78,7 @@ function appendMessage(message) {
   messageContainer.append(messageElement)
 }
 
-function post_message_data(message){
+function post_message_data(log_event){
   var url = "https://nhipj3fca6.execute-api.us-east-1.amazonaws.com/dev/message"
   var data = {
       "messages": {
@@ -70,7 +86,7 @@ function post_message_data(message){
           "chat_name" : "front-end-version-2",
           "sender_uuid" : "15d18e55-f3c0-476b-bc05-ec12bc36780d",
           "receiver_uuid" : "f9748683-99f2-4246-b069-7f001ff1b3a4",
-          "message_text" : message
+          "message_text" : log_event
       }
   }
 
