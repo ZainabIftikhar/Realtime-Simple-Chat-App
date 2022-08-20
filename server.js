@@ -28,7 +28,7 @@ server.listen(PORT, () => {
 // Socket has has not been changed
 io.on('connection', socket => {
   socket.on('new-user', ({name, chat_uuid, user_uuid, room}) => {
-    const user = newUser(socket.id, name, chat_uuid, room);
+    const user = newUser(socket.id, name, chat_uuid, user_uuid, room);
     socket.join(user.room)
     
     //post_message_data(`(${name} connected, ${Math.floor(new Date().getTime() / 1000)})`)
