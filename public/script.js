@@ -17,8 +17,7 @@ var keypressed_timestamped = ''
 
 appendMessage(`${name} joined`)
 //post_message_data(`(${name} connected, ${Math.floor(new Date().getTime() / 1000)})`)
-socket.emit('new-user', name)
-
+socket.emit('new-user', {name, chat_uuid, room})
 
 //Message received with recipient name
 socket.on('chat-message', data => {
