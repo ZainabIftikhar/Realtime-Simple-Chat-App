@@ -19,7 +19,6 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/chat.html');
 });
 
-
 const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => { 
@@ -28,7 +27,7 @@ server.listen(PORT, () => {
 
 // Socket has has not been changed
 io.on('connection', socket => {
-  socket.on('new-user', ({name, chat_uuid, room}) => {
+  socket.on('new-user', ({name, chat_uuid, user_uuid, room}) => {
     const user = newUser(socket.id, name, chat_uuid, room);
     socket.join(user.room)
     
