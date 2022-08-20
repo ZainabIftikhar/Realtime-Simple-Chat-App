@@ -26,7 +26,7 @@ io.on('connection', socket => {
   socket.on('new-user', name => {
     users[socket.id] = name
     //post_message_data(`(${name} connected, ${Math.floor(new Date().getTime() / 1000)})`)
-    socket.broadcast.emit('user-connected', name);
+    //socket.broadcast.emit('user-connected', name);
   })
   
   socket.on('send-chat-message', message => {
@@ -34,7 +34,7 @@ io.on('connection', socket => {
   })
   
   socket.on('disconnect', () => {
-    socket.broadcast.emit('user-disconnected', users[socket.id]);
+    //socket.broadcast.emit('user-disconnected', users[socket.id]);
     delete users[socket.id]
   })
   

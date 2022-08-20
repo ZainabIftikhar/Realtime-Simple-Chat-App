@@ -1,15 +1,20 @@
 const socket = io()
 
+// Get name, chat_uuid, user_uuid and room from URL
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const name = urlParams.get('name')
+const chat_uuid = urlParams.get('chat_uuid')
+const user_uuid = urlParams.get('user_uuid')
+const room = urlParams.get('room')
+
 const messageContainer = document.getElementById('message-container')
 const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
 const typing = document.getElementById('typing')
 
 var keypressed_timestamped = ''
-var indicator_case = 3
 
-
-const name = prompt('What is your name?')
 appendMessage(`${name} joined`)
 //post_message_data(`(${name} connected, ${Math.floor(new Date().getTime() / 1000)})`)
 socket.emit('new-user', name)
@@ -33,17 +38,17 @@ socket.on('user-disconnected', name => {
 })
 
 socket.on('typing', data => {
-  if (data.message.length == 0 || indicator_case == 0){
+  if (data.message.length == 0 || room == 0){ //No indicator
      typing.innerHTML = ''
    }
-  else {
-    if (indicator_case == 1){
+  else { //Is-typing indicator
+    if (room == 1){
       typing.innerHTML = '<p>' + data.name + ' is typing...</p>'
     }
-    else if (indicator_case == 2){
+    else if (room == 2){ //Live typing
       typing.innerHTML = `<p>${data.name}: ${data.message}...</p>`
     }
-    else if (indicator_case == 3){
+    else if (room == 3){ //Masked typing
       typing.innerHTML = `<p>${data.name}: ${data.message.replace(/\S/g, "#")}...</p>`
     }
   }
