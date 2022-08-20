@@ -6,7 +6,11 @@ const io = require('socket.io')(server);
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
+<<<<<<< Updated upstream
   res.sendFile(__dirname + '/index.html');
+=======
+  res.sendFile(__dirname + '/public/chat.html');
+>>>>>>> Stashed changes
 });
 
 // Will run the server on port 3000
@@ -25,8 +29,13 @@ const users = {}
 io.on('connection', socket => {
   socket.on('new-user', name => {
     users[socket.id] = name
+<<<<<<< Updated upstream
     post_message_data(`(${name} connected, ${Math.floor(new Date().getTime() / 1000)})`)
     socket.broadcast.emit('user-connected', name);
+=======
+    socket.broadcast.emit('user-connected', name)  
+    //post_message_data(`(${name} connected, ${Math.floor(new Date().getTime() / 1000)})`)
+>>>>>>> Stashed changes
   })
   
   socket.on('send-chat-message', message => {
