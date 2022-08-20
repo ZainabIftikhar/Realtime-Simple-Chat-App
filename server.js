@@ -32,7 +32,7 @@ io.on('connection', socket => {
     socket.join(user.room)
     
     //post_message_data(`(${name} connected, ${Math.floor(new Date().getTime() / 1000)})`)
-    //socket.broadcast.emit('user-connected', name);
+    socket.to(user.room).emit('user-connected', user.name);
   })
   
   socket.on('send-chat-message', message => {
