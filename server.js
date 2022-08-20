@@ -44,6 +44,6 @@ io.on('connection', socket => {
   
   socket.on('typing', message => {
     const user = getActiveUser(socket.id);
-    io.to(user.room).emit('typing', { message: message, name: user.name });
+    socket.to(user.room).emit('typing', { message: message, name: user.name });
   })
 })

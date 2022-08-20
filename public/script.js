@@ -56,13 +56,14 @@ socket.on('typing', data => {
 //Message sent by sender - call API 
 messageForm.addEventListener('submit', e => {
   e.preventDefault()
-  
+
   post_message_data(keypressed_timestamped)
   keypressed_timestamped = ''
   
   const message = messageInput.value
   appendMessage(`${name}: ${message}`)
   socket.emit('send-chat-message', message)
+  typing.innerHTML = ''
   messageInput.value = ''
 })
 
