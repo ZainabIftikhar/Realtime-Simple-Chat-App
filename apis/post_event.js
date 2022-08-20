@@ -1,4 +1,4 @@
-function post_event_message(chat_uuid, room, user_uuid, event_message){
+function post_event_message(chat_uuid, user_uuid, room, event_message){
   var url = "https://nhipj3fca6.execute-api.us-east-1.amazonaws.com/dev/message"
   var data = {
       "messages": {

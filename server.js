@@ -29,9 +29,9 @@ server.listen(PORT, () => {
 io.on('connection', socket => {
   socket.on('new-user', ({name, chat_uuid, user_uuid, room}) => {
     const user = newUser(socket.id, name, chat_uuid, user_uuid, room);
-    socket.join(user.room + user.chat_uuid)
+    //post_event_message(chat_uuid, user_uuid, room, `(${name} connected, ${Math.floor(new Date().getTime() / 1000)})`)
     
-    //post_message_data(`(${name} connected, ${Math.floor(new Date().getTime() / 1000)})`)
+    socket.join(user.room + user.chat_uuid)
     socket.to(user.room + user.chat_uuid).emit('user-connected', user.name);
   })
   
