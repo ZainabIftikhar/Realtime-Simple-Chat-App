@@ -16,7 +16,7 @@ const typing = document.getElementById('typing')
 var keypressed_timestamped = ''
 
 appendMessage(`${name} joined`)
-//post_message_data(`(${name} connected, ${Math.floor(new Date().getTime() / 1000)})`)
+
 socket.emit('new-user', {name, chat_uuid, user_uuid, room})
 
 //Message received with recipient name
@@ -32,7 +32,6 @@ socket.on('user-connected', name => {
 
 //Shows when other people disconnect
 socket.on('user-disconnected', name => {
-  //post_message_data(`(${name} disconnected, ${Math.floor(new Date().getTime() / 1000)})`)
   appendMessage(`${name} disconnected`)
 })
 
@@ -82,3 +81,12 @@ function appendMessage(message) {
   messageElement.innerText = message
   messageContainer.append(messageElement)
 }
+
+//Prompt the user before leave chat room
+document.getElementById('leave-btn').addEventListener('click', () => {
+  const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
+  if (leaveRoom) {
+    window.location = '../index.html';
+  } else {
+  }
+});
