@@ -42,7 +42,7 @@ io.on('connection', socket => {
   
   socket.on('disconnect', () => {
     const user = exitRoom(socket.id)
-    socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
+    //socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
   })
   
   socket.on('typing', message => {
