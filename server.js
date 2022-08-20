@@ -29,24 +29,24 @@ server.listen(PORT, () => {
 io.on('connection', socket => {
   socket.on('new-user', ({name, chat_uuid, user_uuid, room}) => {
     const user = newUser(socket.id, name, chat_uuid, user_uuid, room);
-    socket.join(user.room)
+    socket.join(user.room + user.chat_uuid)
     
     //post_message_data(`(${name} connected, ${Math.floor(new Date().getTime() / 1000)})`)
-    socket.to(user.room).emit('user-connected', user.name);
+    socket.to(user.room + user.chat_uuid).emit('user-connected', user.name);
   })
   
   socket.on('send-chat-message', message => {
     const user = getActiveUser(socket.id);
-    socket.to(user.room).emit('chat-message', { message: message, name: user.name });
+    socket.to(user.room + user.chat_uuid).emit('chat-message', { message: message, name: user.name });
   })
   
   socket.on('disconnect', () => {
     const user = exitRoom(socket.id)
-    socket.to(user.room).emit('user-disconnected', user.name);
+    socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
   })
   
   socket.on('typing', message => {
     const user = getActiveUser(socket.id);
-    socket.to(user.room).emit('typing', { message: message, name: user.name });
+    socket.to(user.room + user.chat_uuid).emit('typing', { message: message, name: user.name });
   })
 })
