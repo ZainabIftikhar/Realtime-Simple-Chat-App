@@ -57,7 +57,7 @@ socket.on('typing', data => {
 messageForm.addEventListener('submit', e => {
   e.preventDefault()
 
-  post_message_data(keypressed_timestamped)
+  //post_message_data(keypressed_timestamped)
   keypressed_timestamped = ''
   
   const message = messageInput.value
