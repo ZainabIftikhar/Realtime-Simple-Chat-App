@@ -29,10 +29,10 @@ io.on('connection', socket => {
   
   socket.on('send-chat-message', message => {
     const user = getActiveUser(socket.id);
-    socket.to(user.room + user.chat_uuid).emit('chat-message', { message: message, name: user.name });
+    socket.to(user.room + user.chat_uuid).emit('chat-message', { message: message.text, name: user.name });
     
     post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, 
-      `${message}, ${Math.floor(new Date().getTime() / 1000)}`)
+      `${keys_timestamped}, ${Math.floor(new Date().getTime() / 1000)}`)
   })
   
   socket.on('disconnect', () => {
