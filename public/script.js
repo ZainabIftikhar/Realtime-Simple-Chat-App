@@ -56,7 +56,7 @@ socket.on('typing', data => {
 messageForm.addEventListener('submit', e => {
   e.preventDefault()
 
-  post_message_data(name, chat_uuid, user_uuid, room, keypressed_timestamped)
+  //post_message_data(name, chat_uuid, user_uuid, room, keypressed_timestamped)
   keypressed_timestamped = ''
   
   const message = messageInput.value
@@ -113,10 +113,10 @@ function post_message_data(message){
    .then((response) => response.json())
      .then((data) => {
        console.log('Success:', data);
-       appendMessage('sccess')
+       //appendMessage('sccess')
      })
      .catch((error) => {
        console.error('Error:', error);
-       appendMessage('error')
+       //appendMessage('error')
      });
  } 
