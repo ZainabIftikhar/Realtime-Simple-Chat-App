@@ -23,7 +23,7 @@ io.on('connection', socket => {
     socket.to(user.room + user.chat_uuid).emit('user-connected', user.name);
     
     post_event_message(chat_uuid, user_uuid, name, room, 
-      `${name} connected, ${Math.floor(new Date().getTime() / 1000)}`)
+      `[${name} connected: ${Math.floor(new Date().getTime() / 1000)}]`)
   
   })
   
@@ -32,7 +32,7 @@ io.on('connection', socket => {
     socket.to(user.room + user.chat_uuid).emit('chat-message', { message: message.text, name: user.name });
     
     post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, 
-      `${message.keys_timestamped}, ${Math.floor(new Date().getTime() / 1000)}`)
+      `[${message.keys_timestamped}: ${Math.floor(new Date().getTime() / 1000)}]`)
   })
   
   socket.on('disconnect', () => {
@@ -40,7 +40,7 @@ io.on('connection', socket => {
     socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
     
     post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, 
-      `${user.name} disconnected, ${Math.floor(new Date().getTime() / 1000)}`)
+      `[${user.name} disconnected: ${Math.floor(new Date().getTime() / 1000)}]`)
   })
   
   socket.on('typing', message => {

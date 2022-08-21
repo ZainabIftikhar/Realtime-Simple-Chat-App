@@ -72,7 +72,7 @@ messageInput.addEventListener('input', function(e){
 
 //Keys pressed by the sender - concatenate keys/events 
 messageInput.addEventListener('keyup', function(e){
-  keypressed_timestamped += `${e.key}, ${Math.floor(new Date().getTime() / 1000)};`
+  keypressed_timestamped += `(${e.key}: ${Math.floor(new Date().getTime() / 1000)})`
 })
 
 function appendMessage(message) {
