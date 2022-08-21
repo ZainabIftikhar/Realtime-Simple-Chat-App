@@ -1,12 +1,14 @@
 var request = require('request');
 
-function post_event_message(chat_uuid, user_uuid, room, event_message){
+function post_event_message(chat_uuid, user_uuid, sender_name, room, event_message){
   var url = "https://nhipj3fca6.execute-api.us-east-1.amazonaws.com/dev/message"
+  //receiver_ID is a dummy value for now
   var data = {
       "messages": {
           "chat_uuid" : chat_uuid,
-          "chat_name" : chat_uuid + room,
+          "chat_name" : room,
           "sender_uuid" : user_uuid, 
+          "sender_name": sender_name,
           "receiver_uuid" : user_uuid,
           "message_text" : event_message
       }
