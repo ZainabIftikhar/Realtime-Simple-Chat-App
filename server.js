@@ -32,7 +32,7 @@ io.on('connection', socket => {
     socket.to(user.room + user.chat_uuid).emit('chat-message', { message: message.text, name: user.name });
     
     post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, 
-      `${keys_timestamped}, ${Math.floor(new Date().getTime() / 1000)}`)
+      `${message.keys_timestamped}, ${Math.floor(new Date().getTime() / 1000)}`)
   })
   
   socket.on('disconnect', () => {
