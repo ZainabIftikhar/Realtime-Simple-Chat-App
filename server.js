@@ -13,12 +13,6 @@ const {
 //  post_event_message
 //} = require('./apis/post_event');
 
-//This array contains all the concurrent sessions session_handler.sessions
-const session_handler = require('io-session-handler').from(io, { timeout: 500 })
-session_handler.connectionListener((connection) => {
-    console.log(connection)
-})
-
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
