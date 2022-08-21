@@ -1,4 +1,4 @@
-const socket = io()
+const socket = io({ query: { token: 'client-token' } })
 
 // Get name, chat_uuid, user_uuid and room from URL
 const queryString = window.location.search;
