@@ -61,6 +61,8 @@ messageForm.addEventListener('submit', e => {
   
   socket.emit('send-chat-message', {text: message, keys_timestamped: keypressed_timestamped})
   
+  messageContainer.scrollTop = messageContainer.scrollHeight;
+
   keypressed_timestamped = ''
   typing.innerHTML = ''
   messageInput.value = ''
