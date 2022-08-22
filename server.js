@@ -37,7 +37,7 @@ io.on('connection', socket => {
   
   socket.on('disconnect', () => {
     const user = exitRoom(socket.id)
-    socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
+    //socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
     
     //post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, 
     //  `[${user.name} disconnected: ${Math.floor(new Date().getTime() / 1000)}]`)
