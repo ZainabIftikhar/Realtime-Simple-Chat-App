@@ -21,7 +21,7 @@ socket.emit('new-user', {name, chat_uuid, user_uuid, room})
 
 //Message received with recipient name
 socket.on('chat-message', data => {
-  typing.innerHTML = ''
+  typing.textContent = ''
   appendMessage(`${data.name}: ${data.message}`)
 })
 
@@ -37,17 +37,17 @@ socket.on('user-disconnected', name => {
 
 socket.on('typing', data => {
   if (data.message.length == 0 || room == 0){ //No indicator
-     typing.innerHTML = ''
+     typing.textContent = ''
    }
   else { //Is-typing indicator
     if (room == 1){
-      typing.innerHTML = '<p>' + data.name + ' is typing...</p>'
+      typing.textContent = `${data.name} is typing...`
     }
     else if (room == 2){ //Live typing
-      typing.innerHTML = `<p>${data.name}: ${data.message}...</p>`
+      typing.textContent = `${data.name}: ${data.message}...`
     }
     else if (room == 3){ //Masked typing
-      typing.innerHTML = `<p>${data.name}: ${data.message.replace(/\S/g, "#")}...</p>`
+      typing.textContent = `${data.name}: ${data.message.replace(/\S/g, "#")}...`
     }
   }
 })
@@ -64,7 +64,7 @@ messageForm.addEventListener('submit', e => {
   messageContainer.scrollTop = messageContainer.scrollHeight;
 
   keypressed_timestamped = ''
-  typing.innerHTML = ''
+  typing.textContent = ''
   messageInput.value = ''
 })
 
@@ -79,7 +79,7 @@ messageInput.addEventListener('keyup', function(e){
 
 function appendMessage(message) {
   const messageElement = document.createElement('div')
-  messageElement.innerText = message
+  messageElement.textContent = message
   messageContainer.append(messageElement)
 }
 
