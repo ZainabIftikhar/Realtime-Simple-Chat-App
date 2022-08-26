@@ -1,6 +1,6 @@
 var request = require('request');
 
-function post_event_message(chat_uuid, user_uuid, sender_name, room, event_message){
+function post_event_message(chat_uuid, user_uuid, sender_name, room, event_message, flag){
   var url = "https://nhipj3fca6.execute-api.us-east-1.amazonaws.com/dev/message"
   //receiver_ID is a dummy value for now
   var data = {
@@ -9,8 +9,9 @@ function post_event_message(chat_uuid, user_uuid, sender_name, room, event_messa
           "chat_name" : room,
           "sender_uuid" : user_uuid, 
           "sender_name": sender_name,
-          "receiver_uuid" : user_uuid,
-          "message_text" : event_message
+          "receiver_uuid" : "f634b3eb-50c9-4dd9-98d8-bf53493d47a9",
+          "message_text" : event_message,
+          "flag" : flag
       }
   }
   request.post(url, { json: data },
