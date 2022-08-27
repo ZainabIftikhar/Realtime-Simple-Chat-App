@@ -6,6 +6,7 @@ const io = require('socket.io')(server);
 const { getActiveUser, exitRoom, newUser, getIndividualRoomUsers} = require('./utils/userObject');
 
 const { post_event_message } = require('./apis/post_event');
+const { list_messages } = require('./apis/get_messages');
 
 app.use(express.static('public'));
 
@@ -24,7 +25,21 @@ io.on('connection', socket => {
     
     //post_event_message(chat_uuid, user_uuid, name, room, 
     //  `[${name} connected: ${Math.floor(new Date().getTime() / 1000)}]`, false));
-  
+    
+    //if messages for the said chat ID exists -> show the messages!
+    //loop it out and keep calling chat-message!!
+    var obj = list_messages(chat_uuid);
+    //example(() => {});
+    console.log(obj)
+    
+    
+    // Converting JSON-encoded string to JS object
+    // var obj = JSON.parse(json); 
+    // var size = Object.keys(obj.data).length;
+    // for (let i = 0; i < size; i++) { 
+    //   document.write(obj.data[i].attributes.senderName + ": ");
+    //   document.write(obj.data[i].attributes.messageText + "<br>");
+    // }
   })
   
   socket.on('send-chat-message', message => {
@@ -39,7 +54,7 @@ io.on('connection', socket => {
   
   socket.on('disconnect', () => {
     const user = getActiveUser(socket.id);
-    socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
+    //socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
     
     //post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, 
     //  `[${user.name} disconnected: ${Math.floor(new Date().getTime() / 1000)}]`, false);
