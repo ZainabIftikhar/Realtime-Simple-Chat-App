@@ -9,14 +9,14 @@ function post_event_message(chat_uuid, user_uuid, sender_name, room, event_messa
           "chat_name" : room,
           "sender_uuid" : user_uuid, 
           "sender_name": sender_name,
-          "receiver_uuid" : "f634b3eb-50c9-4dd9-98d8-bf53493d47a9",
+          "receiver_uuid" : user_uuid,
           "message_text" : event_message,
           "flag" : flag
       }
   }
   request.post(url, { json: data },
     function (error, response, body) {
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode === 200) {
             console.log(body);
         }
     }
