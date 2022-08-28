@@ -28,14 +28,16 @@ io.on('connection', socket => {
     
     async function call_get_messages() {
       json = await list_messages(chat_uuid);
-      obj = JSON.parse(json);
-      var size = Object.keys(obj.data).length;
-      for (let i = 0; i < size; i++) { 
-        senderName = obj.data[i].attributes.senderName;
-        messageText = obj.data[i].attributes.messageText
-        socket.emit(socket.id).emit('chat-message', { message: messageText, name: senderName });
-      }
-    }
+      json.then(function () {
+        obj = JSON.parse(json);
+        var size = Object.keys(obj.data).length;
+        for (let i = 0; i < size; i++) { 
+          senderName = obj.data[i].attributes.senderName;
+          messageText = obj.data[i].attributes.messageText
+          socket.emit(socket.id).emit('chat-message', { message: messageText, name: senderName });
+        }
+      }).catch(function() {
+      });
     call_get_messages();
   })
   
