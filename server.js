@@ -20,26 +20,23 @@ server.listen(PORT, () => { console.log(`listening on port ${PORT}`);});
 io.on('connection', socket => {
   socket.on('new-user', ({name, chat_uuid, user_uuid, room}) => {
     const user = newUser(socket.id, name, chat_uuid, user_uuid, room);    
-    socket.join(user.room + user.chat_uuid);
-    socket.to(user.room + user.chat_uuid).emit('user-connected', user.name);
+    socket.join(room + chat_uuid);
+    socket.to(room + chat_uuid).emit('user-connected', name);
     
     //post_event_message(chat_uuid, user_uuid, name, room, 
     //  `[${name} connected: ${Math.floor(new Date().getTime() / 1000)}]`, false));
     
-    //if messages for the said chat ID exists -> show the messages!
-    //loop it out and keep calling chat-message!!
-    var obj = list_messages(chat_uuid);
-    //example(() => {});
-    console.log(obj)
-    
-    
-    // Converting JSON-encoded string to JS object
-    // var obj = JSON.parse(json); 
-    // var size = Object.keys(obj.data).length;
-    // for (let i = 0; i < size; i++) { 
-    //   document.write(obj.data[i].attributes.senderName + ": ");
-    //   document.write(obj.data[i].attributes.messageText + "<br>");
-    // }
+    async function call_get_messages() {
+      json = await list_messages(chat_uuid);
+      obj = JSON.parse(json);
+      var size = Object.keys(obj.data).length;
+      for (let i = 0; i < size; i++) { 
+        senderName = obj.data[i].attributes.senderName;
+        messageText = obj.data[i].attributes.messageText
+        socket.emit(socket.id).emit('chat-message', { message: messageText, name: senderName });
+      }
+    }
+    call_get_messages();
   })
   
   socket.on('send-chat-message', message => {
