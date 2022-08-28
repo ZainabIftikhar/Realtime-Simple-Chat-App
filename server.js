@@ -53,6 +53,23 @@ io.on('connection', socket => {
   
   socket.on('disconnect', () => {
     const user = getActiveUser(socket.id);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
+=======
+    //socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
+>>>>>>> parent of ae31875 (Error handling for disconnected socketIDs)
+    
+    post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, 
+      `[${user.name} disconnected: ${Math.floor(new Date().getTime() / 1000)}]`, false);
+    exitRoom(socket.id);
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 06e0869 (Update server.js)
     if (typeof user.room === undefined){
       
     } else{
@@ -60,6 +77,32 @@ io.on('connection', socket => {
        post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, 
          `[${user.name} disconnected: ${Math.floor(new Date().getTime() / 1000)}]`, false);
        exitRoom(socket.id);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 2ae7699 (Unexpected token ')' - server.js)
+=======
+>>>>>>> parent of 2ae7699 (Unexpected token ')' - server.js)
+=======
+>>>>>>> parent of 2ae7699 (Unexpected token ')' - server.js)
+=======
+>>>>>>> parent of ae31875 (Error handling for disconnected socketIDs)
+=======
+    socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
+    
+    post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, 
+      `[${user.name} disconnected: ${Math.floor(new Date().getTime() / 1000)}]`, false);
+    //exitRoom(socket.id);
+>>>>>>> parent of 5ed109c (try catch for unhandled promise rejection - typo fixed)
+=======
+    //socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
+    
+    post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, 
+      `[${user.name} disconnected: ${Math.floor(new Date().getTime() / 1000)}]`, false);
+    exitRoom(socket.id);
+>>>>>>> parent of 0c60d19 (comment exitRoom)
+>>>>>>> parent of 06e0869 (Update server.js)
   })
   
   socket.on('typing', message => {
