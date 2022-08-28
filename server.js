@@ -60,6 +60,7 @@ io.on('connection', socket => {
        post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, 
          `[${user.name} disconnected: ${Math.floor(new Date().getTime() / 1000)}]`, false);
        exitRoom(socket.id);
+     }
   })
   
   socket.on('typing', message => {
