@@ -28,16 +28,17 @@ io.on('connection', socket => {
     
     async function call_get_messages() {
       json = await list_messages(chat_uuid);
-      json.then(function () {
+      json.then(function(){
         obj = JSON.parse(json);
         var size = Object.keys(obj.data).length;
         for (let i = 0; i < size; i++) { 
           senderName = obj.data[i].attributes.senderName;
           messageText = obj.data[i].attributes.messageText
           socket.emit(socket.id).emit('chat-message', { message: messageText, name: senderName });
-        }
-      }).catch(function() {
+      }}).catch(function (){
+        
       });
+    }
     call_get_messages();
   })
   
@@ -53,11 +54,11 @@ io.on('connection', socket => {
   
   socket.on('disconnect', () => {
     const user = getActiveUser(socket.id);
-    socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
+    //socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
     
     post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, 
       `[${user.name} disconnected: ${Math.floor(new Date().getTime() / 1000)}]`, false);
-    //exitRoom(socket.id);
+    exitRoom(socket.id);
   })
   
   socket.on('typing', message => {
