@@ -1,13 +1,13 @@
 const { participants_group_1} = require('./schedule');
-//const { participants_group_2} = require('./utils/schedule');
+const { participants_group_2} = require('./schedule');
 //const { participants_group_3} = require('./utils/schedule');
 var tc = require("timezonecomplete");   
 
 var allow_access = false;
 
 const group1_slot = new tc.DateTime("2022-08-30T12:00:00 localtime")
-const group2_slot = new tc.DateTime("2022-08-31T12:00:00 localtime")
-const group3_slot = new tc.DateTime("2022-09-01T12:00:00 localtime")
+const group2_slot = new tc.DateTime("2022-08-30T12:00:00 localtime")
+const group3_slot = new tc.DateTime("2022-08-30T12:00:00 localtime")
 
 const current_time = new tc.DateTime("2022-08-30T12:50:00 localtime");
 
