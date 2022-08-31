@@ -59,7 +59,7 @@ const participants_group_2 = {
   
   //Group 2 Slot 3
   "8f80bb47-c8ef-4aa5-8869-4b0f80790f58": {"user1": p12, "user2": p11, "room": 0, "slot": 0},
-  "8f80bb47-c8ef-4aa5-8869-4b0f80790f58": {"user1": p10, "user2": p14, "room": 1, "slot": 1},
+  "627507ea-349b-469d-9382-e45f71b069b1": {"user1": p10, "user2": p14, "room": 1, "slot": 1},
   "3766ef88-2621-4f0e-b138-a6f977b704e7": {"user1": p15, "user2": p16, "room": 2, "slot": 2},
   "2c977389-8ee4-464f-82c6-9c9165c7d1eb": {"user1": p9, "user2": p13, "room": 3, "slot": 3},
   
