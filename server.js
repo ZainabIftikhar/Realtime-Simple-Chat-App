@@ -4,6 +4,7 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 const { getActiveUser, exitRoom, newUser, getIndividualRoomUsers} = require('./utils/userObject');
+const { authenticate} = require('./utils/authenticate');
 
 const { post_event_message } = require('./apis/post_event');
 const { list_messages } = require('./apis/get_messages');
