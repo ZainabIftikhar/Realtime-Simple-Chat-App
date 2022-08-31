@@ -15,14 +15,18 @@ const typing = document.getElementById('typing')
 
 var keypressed_timestamped = ''
 
-appendMessage(`${name} joined`)
-
 socket.emit('new-user', {name, chat_uuid, user_uuid, room})
 
 //Message received with recipient name
 socket.on('chat-message', data => {
   typing.textContent = ''
-  appendMessage(`${data.name}: ${data.message}`)
+  if (data.name == 'Problem'){
+    appendMessageHTML(`${data.name}: ${data.message}`)
+    appendMessage(`${name} joined`)
+  }
+  else {
+    appendMessage(`${data.name}: ${data.message}`)
+  }
 })
 
 //Shows when other people connect
@@ -85,6 +89,12 @@ messageInput.addEventListener('keyup', function(e){
 function appendMessage(message) {
   const messageElement = document.createElement('div')
   messageElement.textContent = message
+  messageContainer.append(messageElement)
+}
+
+function appendMessageHTML(message) {
+  const messageElement = document.createElement('div')
+  messageElement.innerHTML = message
   messageContainer.append(messageElement)
 }
 
