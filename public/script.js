@@ -113,7 +113,7 @@ function appendMessageHTML(message) {
 
 //Prompt the user before leave chat room
 document.getElementById('leave-btn').addEventListener('click', () => {
-  const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
+  const leaveRoom = confirm('Are you sure you want to leave the chatroom? This will take you to the survey.');
   if (leaveRoom) {
     window.location = qualtrics_dict[room] 
   } else {
