@@ -52,6 +52,11 @@ socket.on('typing', data => {
   }
 })
 
+socket.on('redirect', function(destination) {
+  appendMessage("redirect")
+  window.location.href = destination;
+});
+
 //Message sent by sender - call API 
 messageForm.addEventListener('submit', e => {
   e.preventDefault()
