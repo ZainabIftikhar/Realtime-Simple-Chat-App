@@ -59,7 +59,6 @@ io.on('connection', socket => {
   
   socket.on('disconnect', () => {
     const user = getActiveUser(socket.id);
-    console.log(typeof user)
     if (typeof user != 'undefined'){
       socket.to(user.room + user.chat_uuid).emit('user-disconnected', user.name);
       
@@ -71,7 +70,6 @@ io.on('connection', socket => {
   
   socket.on('typing', message => {
     const user = getActiveUser(socket.id);
-    console.log(typeof user)
     if (typeof user != 'undefined'){
       socket.to(user.room + user.chat_uuid).emit('typing', { message: message, name: user.name });
     }
