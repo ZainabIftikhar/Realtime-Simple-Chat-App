@@ -7,17 +7,16 @@ const { task3 } = require('./problems');
 const { task4 } = require('./problems');
 var tc = require("timezonecomplete");   
 
+var allow_access = false;
 
 ///////////
 ///////////
 //////////
-var allow_access = true;
+const group1_slot = new tc.DateTime("2022-09-01T12:00:00 localtime")
+const group2_slot = new tc.DateTime("2022-09-02T12:00:00 localtime")
+const group3_slot = new tc.DateTime("2022-09-03T12:00:00 localtime")
 
-const group1_slot = new tc.DateTime("2022-08-30T12:00:00 localtime")
-const group2_slot = new tc.DateTime("2022-08-31T12:00:00 localtime")
-const group3_slot = new tc.DateTime("2022-09-01T12:00:00 localtime")
-
-const current_time = new tc.DateTime("2022-08-30T12:00:00 localtime");
+const current_time = new tc.DateTime("2022-09-01T12:00:00 localtime");
 
 ///////////
 ///////////
