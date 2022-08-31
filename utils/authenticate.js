@@ -3,7 +3,7 @@ const { participants_group_2} = require('./schedule');
 const { participants_group_3} = require('./schedule');
 var tc = require("timezonecomplete");   
 
-var allow_access = false;
+var allow_access = true;
 
 const group1_slot = new tc.DateTime("2022-08-30T12:00:00 localtime")
 const group2_slot = new tc.DateTime("2022-08-31T12:00:00 localtime")
