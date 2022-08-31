@@ -15,10 +15,6 @@ const diff_from_group_1 = current_time.diff(group1_slot).minutes()
 const diff_from_group_2 = current_time.diff(group2_slot).minutes()
 const diff_from_group_3 = current_time.diff(group3_slot).minutes()
 
-//console.log(diff_from_group_1)
-//console.log(diff_from_group_2)
-//console.log(diff_from_group_3)
-
 function authenticate(chat_uuid, user_uuid, room){
   if (diff_from_group_1 > 0 && diff_from_group_1 < 60){
     var slot = participants_group_1[chat_uuid]
