@@ -13,6 +13,19 @@ const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
 const typing = document.getElementById('typing')
 
+
+const no_indicator_qualtircs  = 'https://brown.co1.qualtrics.com/jfe/form/SV_1zxp3J3EnjSZII6'
+const is_typing_qualtrics  = 'https://brown.co1.qualtrics.com/jfe/lo form/SV_9yJJOjCpvVunDym'
+const live_typing_qualtrics = 'https://brown.co1.qualtrics.com/jfe/form/SV_5vFFHbqEzs1WM86'
+const masked_typing_qualtrics = 'https://brown.co1.qualtrics.com/jfe/form/SV_aVvn6NawNsvCBBI' 
+
+var qualtrics_dict = {
+  0: no_indicator_qualtircs,
+  1: is_typing_qualtrics,
+  2: live_typing_qualtrics,
+  3: masked_typing_qualtrics
+};
+
 var keypressed_timestamped = ''
 
 socket.emit('new-user', {name, chat_uuid, user_uuid, room})
@@ -102,7 +115,7 @@ function appendMessageHTML(message) {
 document.getElementById('leave-btn').addEventListener('click', () => {
   const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
   if (leaveRoom) {
-    window.location = '../index.html';
+    window.location = qualtrics_dict[room] 
   } else {
   }
 })
