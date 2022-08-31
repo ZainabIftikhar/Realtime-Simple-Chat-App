@@ -19,6 +19,13 @@ server.listen(PORT, () => { console.log(`listening on port ${PORT}`);});
 
 io.on('connection', socket => {
   socket.on('new-user', ({name, chat_uuid, user_uuid, room}) => {
+    
+    const authenticate_flag= authenticate(chat_uuid, user_uuid, room)
+    if (authenticate_flag === false) {
+      var destination = '/error.html';
+      socket.emit(socket.id).emit('redirect', destination);
+    }
+  
     const user = newUser(socket.id, name, chat_uuid, user_uuid, room);    
     socket.join(room + chat_uuid);
     socket.to(room + chat_uuid).emit('user-connected', name);
