@@ -25,6 +25,7 @@ io.on('connection', socket => {
     if (authenticate_flag == false) {
       var destination = '/error.html';
       socket.emit(socket.id).emit('redirect', destination);
+      return
     }
     
     const user = newUser(socket.id, name, chat_uuid, user_uuid, room);    

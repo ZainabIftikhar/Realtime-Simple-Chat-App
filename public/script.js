@@ -34,6 +34,10 @@ socket.emit('new-user', {name, chat_uuid, user_uuid, room})
 socket.on('chat-message', data => {
   typing.textContent = ''
   if (data.name == 'Problem'){
+    //User tries to go back
+    if (data.message == ''){
+      window.location = '../error.html'; 
+    }
     appendMessageHTML(`${data.name}: ${data.message}`)
     appendMessage(`${name} joined`)
   }
