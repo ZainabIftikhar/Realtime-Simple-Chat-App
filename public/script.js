@@ -15,7 +15,7 @@ const typing = document.getElementById('typing')
 
 
 const no_indicator_qualtircs  = 'https://brown.co1.qualtrics.com/jfe/form/SV_1zxp3J3EnjSZII6'
-const is_typing_qualtrics  = 'https://brown.co1.qualtrics.com/jfe/lo form/SV_9yJJOjCpvVunDym'
+const is_typing_qualtrics  = 'https://brown.co1.qualtrics.com/jfe/form/SV_9yJJOjCpvVunDym'
 const live_typing_qualtrics = 'https://brown.co1.qualtrics.com/jfe/form/SV_5vFFHbqEzs1WM86'
 const masked_typing_qualtrics = 'https://brown.co1.qualtrics.com/jfe/form/SV_aVvn6NawNsvCBBI' 
 
