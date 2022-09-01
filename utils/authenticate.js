@@ -34,7 +34,7 @@ const diff_from_group_2 = current_time.diff(group2_slot).minutes()
 const diff_from_group_3 = current_time.diff(group3_slot).minutes()
 
 function authenticate(chat_uuid, user_uuid, room){
-  if (diff_from_group_1 => 0 && diff_from_group_1 <= 60){
+  if ((diff_from_group_1 => 0) && (diff_from_group_1 <= 60)){
     var slot = participants_group_1[chat_uuid]
     if (typeof slot === 'undefined'){
       return [allow_access, ''] 
@@ -44,7 +44,7 @@ function authenticate(chat_uuid, user_uuid, room){
       return [allow_access, task_dict[slot.problem]] 
     }
   } 
-  else if (diff_from_group_2 => 0 && diff_from_group_2 <= 60) {
+  else if ((diff_from_group_2 => 0) && (diff_from_group_2 <= 60)) {
     var slot = participants_group_2[chat_uuid]
     if (typeof slot === 'undefined'){
       return [allow_access, ''] 
@@ -54,7 +54,7 @@ function authenticate(chat_uuid, user_uuid, room){
       return [allow_access, task_dict[slot.problem]] 
     }
   }
-  else if (diff_from_group_3 => 0 && diff_from_group_3 <= 60) {
+  else if ((diff_from_group_3 => 0) && (diff_from_group_3 <= 60)) {
     var slot = participants_group_3[chat_uuid]
     if (typeof slot === 'undefined'){
       return [allow_access, ''] 
