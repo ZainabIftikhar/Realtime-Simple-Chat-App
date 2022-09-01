@@ -12,11 +12,11 @@ var allow_access = false;
 ///////////
 ///////////
 //////////
-const group1_slot = new tc.DateTime("2022-09-01T12:00:00 localtime")
-const group2_slot = new tc.DateTime("2022-09-02T12:00:00 localtime")
-const group3_slot = new tc.DateTime("2022-09-03T12:00:00 localtime")
+const group1_slot = new tc.DateTime("2022-08-31T00:00:00 localtime") //actual time: rn its wed 9pm
+const group2_slot = new tc.DateTime("2022-08-31T21:00:00 localtime")
+const group3_slot = new tc.DateTime("2022-08-31T21:00:00 localtime")
 
-const current_time = new tc.DateTime("2022-09-01T12:00:00 localtime");
+const current_time = new tc.DateTime();
 
 ///////////
 ///////////
