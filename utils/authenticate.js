@@ -9,7 +9,7 @@ var tc = require("timezonecomplete");
 
 process.env.TZ = 'America/New York' 
 
-var allow_access = false;
+var allow_access = true;
 
 ///////////
 ///////////
