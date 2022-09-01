@@ -9,6 +9,7 @@ var tc = require("timezonecomplete");
 
 process.env.TZ = 'America/New York' 
 
+//var allow_access = false;
 var allow_access = true;
 
 ///////////
@@ -40,27 +41,29 @@ function authenticate(chat_uuid, user_uuid, room){
   if ((diff_from_group_1 => 0) && (diff_from_group_1 <= 60)){
     var slot = participants_group_1[chat_uuid]
     if (typeof slot === 'undefined'){
-      return [allow_access, ''] 
+      //return [allow_access, ''] 
     }
     else if ((slot.user1 == user_uuid || slot.user2 == user_uuid) && slot.room == room){
       allow_access = true
       return [allow_access, task_dict[slot.problem]] 
     }
   } 
-  else if ((diff_from_group_2 => 0) && (diff_from_group_2 <= 60)) {
+  //else if ((diff_from_group_2 => 0) && (diff_from_group_2 <= 60)) {
+  if ((diff_from_group_2 => 0) && (diff_from_group_2 <= 60)) {
     var slot = participants_group_2[chat_uuid]
     if (typeof slot === 'undefined'){
-      return [allow_access, ''] 
+      //return [allow_access, ''] 
     }
     else if ((slot.user1 == user_uuid || slot.user2 == user_uuid) && slot.room == room){
       allow_access = true
       return [allow_access, task_dict[slot.problem]] 
     }
   }
-  else if ((diff_from_group_3 => 0) && (diff_from_group_3 <= 60)) {
+  if ((diff_from_group_3 => 0) && (diff_from_group_3 <= 60)) {
+  //else if ((diff_from_group_3 => 0) && (diff_from_group_3 <= 60)) {
     var slot = participants_group_3[chat_uuid]
     if (typeof slot === 'undefined'){
-      return [allow_access, ''] 
+      //return [allow_access, ''] 
     }
     else if ((slot.user1 == user_uuid || slot.user2 == user_uuid) && slot.room == room){
       allow_access = true
