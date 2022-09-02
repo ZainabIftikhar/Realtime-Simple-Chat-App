@@ -19,7 +19,6 @@ const group2_slot = new tc.DateTime("2022-09-02T15:00:00 America/New_York")
 const group3_slot = new tc.DateTime("2022-09-02T15:00:00 America/New_York")
 
 const a = true;
-const b = true;
 const current_time = new tc.DateTime();
 
 ///////////
