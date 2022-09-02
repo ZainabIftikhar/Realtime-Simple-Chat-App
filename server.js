@@ -48,7 +48,7 @@ io.on('connection', socket => {
         socket.emit(socket.id).emit('chat-message', { message: messageText, name: senderName });
       }
     }
-    call_get_messages();
+    //call_get_messages();
   })
   
   socket.on('send-chat-message', message => {
