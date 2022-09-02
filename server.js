@@ -73,7 +73,7 @@ io.on('connection', socket => {
   socket.on('typing', message => {
     const user = getActiveUser(socket.id);
     if (typeof user != 'undefined'){
-      socket.to(user.room + user.chat_uuid).emit('typing', { message: message, name: user.name });
+    //  socket.to(user.room + user.chat_uuid).emit('typing', { message: message, name: user.name });
     }
     })
 })
