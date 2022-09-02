@@ -17,7 +17,6 @@ const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => { console.log(`listening on port ${PORT}`);});
 
-const a = true;
 
 io.on('connection', socket => {
   socket.on('new-user', ({name, chat_uuid, user_uuid, room}) => {
