@@ -19,9 +19,6 @@ function post_event_message(chat_uuid, user_uuid, sender_name, room, event_messa
         if (!error && response.statusCode === 200) {
             console.log(body);
         }
-        else{
-          return ""
-        }
     }
 );
 };
