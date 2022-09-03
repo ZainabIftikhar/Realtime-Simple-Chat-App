@@ -14,7 +14,6 @@ app.use(express.static('public'));
 app.get('/', (req, res) => { res.sendFile(__dirname + '/public/chat.html');});
 
 const PORT = process.env.PORT || 5000;
-const d = true;
 
 server.listen(PORT, () => { console.log(`listening on port ${PORT}`);});
 
@@ -47,7 +46,7 @@ io.on('connection', socket => {
         socket.emit(socket.id).emit('chat-message', { message: messageText, name: senderName });
       }
     }
-    //call_get_messages();
+    call_get_messages();
   })
   
   socket.on('send-chat-message', message => {
