@@ -17,6 +17,8 @@ const group3_slot = new tc.DateTime("2022-08-31T22:00:00 America/New_York")
 
 const current_time = new tc.DateTime("2022-08-31T22:00:00 America/New_York");
 
+const a  = true;
+
 var task_dict = {
   1: task1,
   2: task2,
