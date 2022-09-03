@@ -14,7 +14,7 @@ app.use(express.static('public'));
 app.get('/', (req, res) => { res.sendFile(__dirname + '/public/chat.html');});
 
 const PORT = process.env.PORT || 5000;
-const a = true;
+const b = true;
 
 server.listen(PORT, () => { console.log(`listening on port ${PORT}`);});
 
