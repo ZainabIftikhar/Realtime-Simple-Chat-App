@@ -52,12 +52,14 @@ io.on('connection', socket => {
   
   socket.on('send-chat-message', message => {
     const user = getActiveUser(socket.id);
+    if (typeof user != 'undefined'){
     socket.to(user.room + user.chat_uuid).emit('chat-message', { message: message.text, name: user.name });
     
     post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, 
       `[${message.keys_timestamped}: ${Math.floor(new Date().getTime() / 1000)}]`, false);
     
     post_event_message(user.chat_uuid, user.user_uuid, user.name, user.room, message.text, true);
+  }
   })
   
   socket.on('disconnect', () => {
