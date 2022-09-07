@@ -21,7 +21,9 @@ server.listen(PORT, () => { console.log(`listening on port ${PORT}`);});
 io.on('connection', socket => {
   socket.on('new-user', ({name, chat_uuid, user_uuid, room}) => {
     
-    const [authenticate_flag, task] = authenticate(chat_uuid, user_uuid, room)
+    //const [authenticate_flag, task] = authenticate(chat_uuid, user_uuid, room)
+    const [authenticate_flag, task] = [true, '']
+    
     if (authenticate_flag == false) {
       var destination = '/error.html';
       socket.emit(socket.id).emit('redirect', destination);
