@@ -7,8 +7,6 @@ const { task3 } = require('./problems');
 const { task4 } = require('./problems');
 var tc = require("timezonecomplete");   
 
-process.env.TZ = 'America/New York' 
-
 var allow_access = false;
 
 const group1_slot = new tc.DateTime("2022-08-31T22:00:00 America/New_York")
